@@ -14,17 +14,29 @@
         <h1>CodeCrunch</h1>
     </div>
     <div class="container">
-        <div class="left">
-            <label><i class="fab fa-html5"></i>HTML</label>
-            <textarea id="html-code" onkeyup="run()"></textarea>
-            <label><i class="fab fa-css3-alt"></i> CSS</label>
-            <textarea id="css-code" onkeyup="run()"></textarea>
-            <label> <i class="fab fa-js"></i>JavaScript</label>
-            <textarea id="js-code" onkeyup="run()"></textarea>
+        <div class="sidebar">
+            <button onclick="showSection('html')"><i class="fab fa-html5"></i> HTML</button>
+            <button onclick="showSection('css')"><i class="fab fa-css3-alt"></i> CSS</button>
+            <button onclick="showSection('js')"><i class="fab fa-js"></i> JavaScript</button>
+            <button onclick="showSection('output')"><i class="fas fa-play"></i> Output</button>
         </div>
-        <div class="right">
-            <label><i class="fas fa-play"></i> OUTPUT</label>
-            <iframe id="output"></iframe>
+        <div class="content">
+            <div class="code-editor" id="html-section">
+                <label><i class="fab fa-html5"></i> HTML</label>
+                <textarea id="html-code" onkeyup="run()"></textarea>
+            </div>
+            <div class="code-editor" id="css-section">
+                <label><i class="fab fa-css3-alt"></i> CSS</label>
+                <textarea id="css-code" onkeyup="run()"></textarea>
+            </div>
+            <div class="code-editor" id="js-section">
+                <label><i class="fab fa-js"></i> JavaScript</label>
+                <textarea id="js-code" onkeyup="run()"></textarea>
+            </div>
+            <div class="output-section" id="output-section">
+                <label><i class="fas fa-play"></i> Output</label>
+                <iframe id="output"></iframe>
+            </div>
         </div>
     </div>
 
@@ -38,6 +50,15 @@
             output.contentWindow.document.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
             output.contentWindow.eval(jsCode);
         }
+
+        function showSection(section) {
+            const sections = document.querySelectorAll('.code-editor, .output-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            document.getElementById(`${section}-section`).style.display = 'block';
+        }
+
+        // Initialize with HTML section visible
+        showSection('html');
     </script>
 </body>
 
