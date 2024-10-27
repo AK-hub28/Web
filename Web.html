@@ -4,24 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CodeCrunch</title>
     <link rel="stylesheet" href="pr.css">
     <script src="https://kit.fontawesome.com/252032e5e8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <div class="header">
+        <h1>CodeCrunch</h1>
+    </div>
     <div class="container">
         <div class="left">
-            <label><i class="fab fa-html5"></i>Html</label>
-            <textarea id="html-code" onkeyup="run()"></textarea>    <!--onkeyup attribute calls the run() function whenever a key is released in this textarea.-->
+            <label><i class="fab fa-html5"></i>HTML</label>
+            <textarea id="html-code" onkeyup="run()"></textarea>
             <label><i class="fab fa-css3-alt"></i> CSS</label>
             <textarea id="css-code" onkeyup="run()"></textarea>
-            <label> <i class="fab fa-js"></i>Javascript</label>
+            <label> <i class="fab fa-js"></i>JavaScript</label>
             <textarea id="js-code" onkeyup="run()"></textarea>
         </div>
         <div class="right">
             <label><i class="fas fa-play"></i> OUTPUT</label>
-            <iframe id="output"></iframe>    <!--This iframe element is used to display the output of the executed HTML, CSS, and JavaScript code. The id attribute is used to identify the element.-->
+            <iframe id="output"></iframe>
         </div>
     </div>
 
@@ -32,16 +35,10 @@
             let jsCode = document.getElementById("js-code").value;
             let output = document.getElementById("output");
 
-            output.contentWindow.document.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";<!--This line sets the content of the output iframe's body. It combines the retrieved HTML code (htmlCode) with the CSS code (cssCode) wrapped in <style> tags. This creates a complete HTML document with embedded CSS styles.
-
-javascript
--->
+            output.contentWindow.document.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
             output.contentWindow.eval(jsCode);
-            <!--This line evaluates the JavaScript code (jsCode) entered in the JavaScript textarea. The eval() function is used to execute the JavaScript code within the context of the iframe's contentWindow, which means it executes the code in a separate JavaScript environment isolated from the main document-->
         }
     </script>
-
 </body>
 
 </html>
-<!--Overall, this function retrieves the HTML, CSS, and JavaScript code entered by the user in the respective textareas, combines them to form a complete HTML document with embedded CSS, and then executes the JavaScript code. The resulting output is displayed in the iframe with the ID "output".-->
