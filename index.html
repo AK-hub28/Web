@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCrunch</title>
+    <link rel="stylesheet" href="pr.css">
+    <script src="https://kit.fontawesome.com/252032e5e8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>CodeCrunch</h1>
+    </div>
+    <div class="container">
+        <div class="left">
+            <label><i class="fab fa-html5"></i>HTML</label>
+            <textarea id="html-code" onkeyup="run()"></textarea>
+            <label><i class="fab fa-css3-alt"></i> CSS</label>
+            <textarea id="css-code" onkeyup="run()"></textarea>
+            <label> <i class="fab fa-js"></i>JavaScript</label>
+            <textarea id="js-code" onkeyup="run()"></textarea>
+        </div>
+        <div class="right">
+            <label><i class="fas fa-play"></i> OUTPUT</label>
+            <iframe id="output"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function run() {
+            let htmlCode = document.getElementById("html-code").value;
+            let cssCode = document.getElementById("css-code").value;
+            let jsCode = document.getElementById("js-code").value;
+            let output = document.getElementById("output");
+
+            output.contentWindow.document.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
+            output.contentWindow.eval(jsCode);
+        }
+    </script>
+</body>
+
+</html>
